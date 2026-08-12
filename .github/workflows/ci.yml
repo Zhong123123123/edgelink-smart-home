@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gateway:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install native dependencies
+        run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
+      - name: Configure
+        run: cmake -S serial-gateway -B serial-gateway/build -DSERIAL_GATEWAY_ENABLE_MQTT=OFF
+      - name: Build
+        run: cmake --build serial-gateway/build -j2
+      - name: Test
+        run: ctest --test-dir serial-gateway/build --output-on-failure
+
+  ai-assistant:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: gateway_ai_assistant/requirements.txt
+      - name: Install dependencies
+        run: python -m pip install -r gateway_ai_assistant/requirements.txt
+      - name: Test
+        run: python -m unittest discover -s gateway_ai_assistant/tests -p "test_*.py"
+

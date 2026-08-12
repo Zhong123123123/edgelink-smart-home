@@ -1,0 +1,133 @@
+serial:
+  instance_name: "primary"
+  device: "/tmp/ttyV0"
+  baudrate: 115200
+  data_bits: 8
+  parity: "N"
+  stop_bits: 1
+  read_chunk_size: 256
+
+# 可选：多串口实例模式。配置后主程序会为每个实例启动一套采集链路。
+# 注意：第一个实例保留 command/monitor/heartbeat 端口，后续实例自动关闭这三项，避免端口冲突。
+#serials:
+#  - instance_name: "line-a"
+#    device: "/tmp/ttyV1"
+#    baudrate: 115200
+#    data_bits: 8
+#    parity: "N"
+#    stop_bits: 1
+#    read_chunk_size: 256
+#  - instance_name: "line-b"
+#    device: "/tmp/ttyV2"
+#    baudrate: 57600
+#    data_bits: 8
+#    parity: "N"
+#    stop_bits: 1
+#    read_chunk_size: 256
+
+uploader:
+  # 回退到原 TCP 上报时改回:
+  # type: "tcp"
+  # host: "127.0.0.1"
+  # port: 9000
+  type: "mqtt"
+  host: "192.168.1.100"
+  port: 1883
+  mqtt_topic: "upstream/gw001/data"
+  mqtt_heartbeat_topic: "upstream/gw001/heartbeat"
+  mqtt_status_topic: "upstream/gw001/status"
+  mqtt_event_topic: "upstream/gw001/event"
+  mqtt_command_ack_topic: "upstream/gw001/command_ack"
+  mqtt_ota_status_topic: "upstream/gw001/ota_status"
+  mqtt_control_enabled: true
+  mqtt_command_down_topic: "upstream/gw001/command/down"
+  mqtt_ota_start_topic: "upstream/gw001/ota/start"
+  mqtt_control_client_id: "serial-gateway-gw001-control"
+  mqtt_client_id: "serial-gateway-gw001"
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_qos: 1
+  mqtt_keepalive_sec: 60
+  mqtt_clean_session: true
+  mqtt_max_inflight: 20
+  disk_cache_enabled: true
+  disk_cache_file: "cache/pending_records.log"
+  disk_cache_max_lines: 10000
+  replay_batch_size: 200
+  replay_pause_ms: 0
+  connect_timeout_ms: 1000
+  reconnect_initial_ms: 500
+  reconnect_max_ms: 5000
+
+runtime:
+  queue_capacity: 1024
+  stats_interval_sec: 60
+  drop_unknown_devices: false
+  device_offline_timeout_sec: 120
+  cache_backlog_warn_threshold: 2000
+
+command:
+  enabled: true
+  bind_host: "127.0.0.1"
+  port: 9001
+  client_timeout_ms: 200
+
+heartbeat:
+  enabled: true
+  interval_sec: 10
+  gateway_id: "serial-gateway"
+
+reload:
+  enabled: false
+  check_interval_sec: 5
+
+monitor:
+  enabled: true
+  bind_host: "127.0.0.1"
+  port: 9010
+  recent_capacity: 100
+
+wifi_device_server:
+  enabled: true
+  listen_host: "0.0.0.0"
+  listen_port: 9100
+
+mqtt_device_ingress:
+  enabled: true
+  host: "127.0.0.1"
+  port: 1884
+  client_id: "serial-gateway-device-ingress"
+  username: ""
+  password: ""
+  gateway_id: "gw001"
+  topic_prefix: "gateway"
+  keepalive_sec: 60
+  clean_session: true
+  reconnect_initial_ms: 1000
+  reconnect_max_ms: 5000
+
+
+tcp_binary:
+  enabled: true
+  listen_host: "0.0.0.0"
+  port: 9101
+  name: "stm32_wifi_bridge"
+  priority: 100
+  heartbeat_timeout_ms: 10000
+
+devices:
+  - device_id: 1
+    name: "sensor-01"
+    enabled: true
+    link_type: "serial"
+    topic_suffix: "line-a/sensor-01"
+  - device_id: 2
+    name: "wifi-node-02"
+    enabled: true
+    link_type: "mqtt"
+    topic_suffix: "line-a/wifi-node-02"
+
+log:
+  file: "logs/serial_gateway.log"
+  level: "INFO"
+  also_stdout: true

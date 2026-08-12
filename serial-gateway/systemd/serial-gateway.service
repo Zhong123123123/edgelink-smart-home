@@ -1,0 +1,23 @@
+[Unit]
+Description=Serial Gateway (Serial Data Collection and TCP Upload)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/serial-gateway/serial-gateway.env
+ExecStart=/usr/local/bin/serial_gateway --config=/etc/serial-gateway/gateway.yaml $SERIAL_GATEWAY_ARGS
+Restart=always
+RestartSec=2
+WorkingDirectory=/var/lib/serial-gateway
+StandardOutput=journal
+StandardError=journal
+NoNewPrivileges=true
+LimitNOFILE=4096
+
+# For serial access, ensure the runtime user is in dialout/uucp as needed.
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

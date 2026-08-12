@@ -1,0 +1,10 @@
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+pydantic>=2,<3
+streamlit>=1.45,<2
+sentence-transformers>=3,<4
+langgraph>=1,<2
+langchain>=1,<2
+langchain-core>=1,<2
+langchain-openai>=1,<2
+openai>=1.0,<2

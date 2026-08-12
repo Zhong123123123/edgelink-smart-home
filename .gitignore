@@ -1,0 +1,149 @@
+# Local IDE / assistant state
+.vscode/
+.idea/
+.claude/
+.pytest_cache/
+.venv/
+**/__pycache__/
+*.py[cod]
+
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+**/config_local.h
+SmartHome/config_private.h
+
+# Build systems and IDE output
+**/build/
+**/build-*/
+**/cmake-build-*/
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/CTestTestfile.cmake
+**/Makefile
+**/Objects/
+**/Listings/
+*.uvguix.*
+*.uvoptx
+*.o
+*.obj
+*.d
+*.a
+*.axf
+*.elf
+*.map
+*.hex
+*.bin
+*.out
+*.crf
+*.dep
+*.lnp
+*.htm
+*.chm
+
+# Runtime data, caches and generated reports
+**/cache/
+**/logs/
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+gateway_ai_assistant/data/rag_index.json
+gateway_ai_assistant/reports/
+serial-gateway/tmp_demo/
+serial-gateway/tmp_fault_matrix*/
+serial-gateway/data/firmware/
+serial-gateway/data/
+serial-gateway/dist/
+SmartHome/Project/ota_artifacts/
+SmartHome/release/
+esp32_comm_adapter/backups/
+
+# Large generated/vendor documentation; source headers remain versioned
+SmartHome/7_HAL/CMSIS/docs/
+SmartHome/7_HAL/CMSIS/Documentation/
+
+# The maintained target is STM32F407. Exclude unrelated CMSIS packs,
+# examples, prebuilt libraries and legacy STM32F1 HAL sources.
+SmartHome/7_HAL/CMSIS/DSP/
+SmartHome/7_HAL/CMSIS/Lib/
+SmartHome/7_HAL/CMSIS/NN/
+SmartHome/7_HAL/CMSIS/Core/
+SmartHome/7_HAL/CMSIS/Core_A/
+SmartHome/7_HAL/CMSIS/RTOS/
+SmartHome/7_HAL/CMSIS/RTOS2/
+SmartHome/7_HAL/CMSIS/ARM.CMSIS.pdsc
+SmartHome/7_HAL/CMSIS/Device/ST/STM32F1xx/
+SmartHome/7_HAL/CMSIS/Device/ST/STM32F4xx/Source/
+SmartHome/7_HAL/CMSIS/Device/ST/STM32F4xx/Include/*
+!SmartHome/7_HAL/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+!SmartHome/7_HAL/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
+!SmartHome/7_HAL/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
+SmartHome/7_HAL/STM32F1xx_HAL_Driver/
+
+# Keep only the FreeRTOS portable layers referenced by SmartHome_F407.uvprojx.
+SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/*
+!SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/GCC/
+SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/GCC/*
+!SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/GCC/ARM_CM4F/
+!SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/MemMang/
+SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/MemMang/*
+!SmartHome/4_MiddleWare/FreeRTOS-Kernel/portable/MemMang/heap_4.c
+
+# Third-party protocol examples are not used by the F407 application target.
+SmartHome/3_Protocol/MQTTClient-C/samples/
+SmartHome/3_Protocol/MQTTClient-C/test/
+SmartHome/3_Protocol/MQTTClient-C/src/cc3200/
+SmartHome/3_Protocol/MQTTClient-C/src/linux/
+SmartHome/3_Protocol/MQTTPacket/samples/
+SmartHome/3_Protocol/MQTTPacket/test/
+
+# Keil-generated debug state and legacy F1-only startup/core files.
+SmartHome/Project/DebugConfig/
+SmartHome/Project/startup_stm32f103xb.s
+SmartHome/8_Core/stm32f1xx_*
+SmartHome/8_Core/system_stm32f1xx.*
+
+# Local experiment records and private project notes
+/data/
+/logs/
+/cache/
+/result&summary/
+/杂项/
+/RESUME_PROJECT_REVISED.md
+/ai功能方案.md
+/DMA应用.md
+/MQTT_LEARNING_GUIDE.md
+/命令记录.md
+/数据流.md
+
+# Superseded development notes; maintained documentation remains tracked
+SmartHome/prompt1.md
+SmartHome/升级.md
+SmartHome/新日志.md
+SmartHome/日志粘贴.md
+SmartHome/本机调试和ota需提前看这里.md
+esp32_node_new/Arduino环境下需要做的.md
+esp32_node_new/日志.md
+esp32_node_new/通信协议的变动.md
+gateway-qt-monitor/QT升级.md
+gateway-qt-monitor/QT升级交付说明.md
+gateway-qt-monitor/QT升级对外摘要.md
+gateway_ai_assistant/简历项目描述.md
+gateway_ai_assistant/面试准备.md
+gateway_ai_assistant/面试讲稿.md
+serial-gateway/docs/resume_project_cn.md
+serial-gateway/网关上传到服务器的MQTT改造.md
+
+# Nested upstream repository metadata is not part of this monorepo.
+SmartHome/4_MiddleWare/FreeRTOS-Kernel/.github/
+SmartHome/4_MiddleWare/FreeRTOS-Kernel/.gitmodules
+
+# OS noise
+.DS_Store
+Thumbs.db
+Desktop.ini

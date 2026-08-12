@@ -1,0 +1,1 @@
+"""Gateway AI assistant package."""

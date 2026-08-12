@@ -1,0 +1,41 @@
+[
+  {
+    "policy_id": "policy_device_offline_ticket",
+    "version": "v1",
+    "alert_rule_id": "device_offline_alert",
+    "action_type": "create_ticket",
+    "risk_level": "medium",
+    "requires_approval": false,
+    "target_type": "device",
+    "title": "Create ticket for offline device",
+    "enabled": true,
+    "notification_target": "oncall_ops",
+    "escalation_target": "ops_manager"
+  },
+  {
+    "policy_id": "policy_sensor_gap_manual_review",
+    "version": "v1",
+    "alert_rule_id": "sensor_upload_gap_alert",
+    "action_type": "manual_review",
+    "risk_level": "medium",
+    "requires_approval": true,
+    "target_type": "device",
+    "title": "Request manual review for telemetry gap",
+    "enabled": true,
+    "notification_target": "telemetry_oncall",
+    "escalation_target": "telemetry_lead"
+  },
+  {
+    "policy_id": "policy_ota_failure_pause_batch",
+    "version": "v1",
+    "alert_rule_id": "ota_failure_spike_alert",
+    "action_type": "pause_batch",
+    "risk_level": "critical",
+    "requires_approval": true,
+    "target_type": "ota_batch",
+    "title": "Pause risky OTA batch rollout",
+    "enabled": true,
+    "notification_target": "ota_oncall",
+    "escalation_target": "release_manager"
+  }
+]

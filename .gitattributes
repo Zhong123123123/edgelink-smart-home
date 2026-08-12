@@ -1,0 +1,20 @@
+* text=auto
+*.c text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.ino text eol=lf
+*.py text eol=lf
+*.qml text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.xlsx binary
+
+# Keil and firmware-related binary formats
+*.uvgui.* binary
+*.pack binary
+*.lib binary
